@@ -14,6 +14,10 @@ func componentGradient(
 	maxColor, gradientSize byte,
 	value, maxValue int64,
 ) byte {
+	if maxValue == 0 {
+		maxValue = 1
+	}
+
 	return maxColor - byte(int64(gradientSize)*value/maxValue)
 }
 
