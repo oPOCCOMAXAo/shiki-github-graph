@@ -1,5 +1,13 @@
 # Shiki-github-graph
 
+Change shikimori time graph from standard:
+
+![standard](docs/standard%20graph.png)
+
+to new:
+
+![nwe](docs/new%20graph.png)
+
 ## Link
 
 ```shell
@@ -56,4 +64,17 @@ final style:
     display: block;
   }
 }
+```
+
+## Envs
+
+```shell
+export DB = "name:password@tcp(host:port)/db"
+export PORT = "8080"
+```
+
+## Build
+
+```shell
+go build .
 ```
