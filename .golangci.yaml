@@ -1,0 +1,55 @@
+run:
+  concurrency: 4
+  timeout: 1m
+  issues-exit-code: 1
+  tests: true
+  skip-dirs-use-default: true
+  allow-parallel-runners: false
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+  uniq-by-line: true
+
+linters-settings:
+  varnamelen:
+    ignore-names:
+      - ok
+      - err
+      - id
+      - db
+      - i
+  gofumpt:
+    module-path: github.com/opoccomaxao/shiki-github-graph
+    extra-rules: true
+  gci:
+    custom-order: false
+    sections:
+      - standard
+      - default
+      - prefix(github.com/opoccomaxao/shiki-github-graph)
+
+linters:
+  enable-all: true
+  disable:
+    - ireturn
+    - ifshort
+    - exhaustivestruct
+    - testpackage
+    - exhaustruct
+    - exhaustive
+    - tagliatelle
+    - errcheck
+    - goimports
+    - tparallel
+    - paralleltest
+    - gomnd
+  fast: false
+
+issues:
+  fix: true
+  exclude-rules:
+    - path: _test.go
+      linters:
+        - funlen

@@ -1,0 +1,8 @@
+# dev files
+.vscode
+.local
+.env
+
+# app files
+*.log
+data
