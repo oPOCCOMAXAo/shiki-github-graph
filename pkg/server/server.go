@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 
@@ -69,6 +70,7 @@ func (s *Server) Serve(ctx context.Context) error {
 
 	engine := gin.New()
 	engine.SetTrustedProxies(nil)
+	engine.Use(cors.Default())
 	engine.GET("/user/:nick", s.GetUser)
 
 	image := engine.Group("/image")
