@@ -73,7 +73,7 @@ func (s *Server) Serve(ctx context.Context) error {
 	engine.Use(cors.Default())
 	engine.GET("/user/:nick", s.GetUser)
 
-	image := engine.Group("/image")
+	image := engine.Group("/image", s.mwImage)
 	image.Static("/", s.config.ImageDir)
 
 	listener, err := net.Listen("tcp", ":"+strconv.Itoa(s.config.Port))

@@ -4,8 +4,14 @@ import (
 	"os"
 	"time"
 
+	"github.com/gin-gonic/gin"
+
 	"github.com/opoccomaxao/shiki-github-graph/pkg/image"
 )
+
+func (s *Server) mwImage(ctx *gin.Context) {
+	ctx.Writer.Header().Set("Content-Security-Policy", "img-src *")
+}
 
 func (s *Server) initImages() error {
 	err := os.MkdirAll(s.config.ImageDir, 0o777)
