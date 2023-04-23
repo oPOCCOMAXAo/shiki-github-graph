@@ -4,12 +4,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/opoccomaxao/shiki-github-graph/pkg/app"
 	"github.com/opoccomaxao/shiki-github-graph/pkg/image"
 )
 
 func (s *Server) initImages() error {
-	err := os.MkdirAll(app.DirData, 0o777)
+	err := os.MkdirAll(s.config.ImageDir, 0o777)
 	if err != nil {
 		return err
 	}

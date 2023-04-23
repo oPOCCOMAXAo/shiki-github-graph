@@ -31,7 +31,8 @@ type Config struct {
 	Storage storage.Config
 	Shiki   shiki.Config
 
-	Port int `env:"PORT" envDefault:"8080"`
+	Port     int    `env:"PORT" envDefault:"8080"`
+	ImageDir string `env:"IMAGE_DIR" envDefault:"data"`
 }
 
 func New(config Config) (*Server, error) {
@@ -71,10 +72,11 @@ func (s *Server) Serve(ctx context.Context) error {
 	engine.GET("/user/:nick", s.GetUser)
 
 	image := engine.Group("/image")
-	image.Static("/", "data")
+	image.Static("/", s.config.ImageDir)
 
 	listener, err := net.Listen("tcp", ":"+strconv.Itoa(s.config.Port))
 	if err != nil {
+		//nolint:wrapcheck
 		return err
 	}
 
@@ -88,6 +90,7 @@ func (s *Server) Serve(ctx context.Context) error {
 
 func (s *Server) Close() error {
 	if s.listener != nil {
+		//nolint:wrapcheck
 		return s.listener.Close()
 	}
 
