@@ -12,7 +12,7 @@ import (
 	"golang.org/x/time/rate"
 )
 
-const host = "https://shikimori.one"
+const host = "https://shikimori.me"
 
 type api struct {
 	client  http.Client
